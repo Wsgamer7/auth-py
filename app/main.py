@@ -5,12 +5,22 @@ from datetime import timedelta, datetime, timezone
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 import jwt
 
 from passlib.context import CryptContext
 
 app = FastAPI()
+
+# 添加 CORS 中间件配置
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 允许所有来源
+    allow_credentials=True,  # 允许携带凭证
+    allow_methods=["*"],  # 允许所有方法
+    allow_headers=["*"],  # 允许所有请求头
+)
 
 secret_key = "6ac45f2b40031c01d6f8b2e118dd961f3431e956793cce26f876f05390459636"
 security_algorithm = "HS256"
