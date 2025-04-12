@@ -149,3 +149,8 @@ async def read_users_me(
     current_user: Annotated[UserInDB, Depends(get_current_active_user)],
 ) -> UserInDB:
     return current_user
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
