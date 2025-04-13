@@ -13,6 +13,13 @@ from passlib.context import CryptContext
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 secret_key = "6ac45f2b40031c01d6f8b2e118dd961f3431e956793cce26f876f05390459636"
 security_algorithm = "HS256"
